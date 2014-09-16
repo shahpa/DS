@@ -125,6 +125,10 @@ public class Graph {
 	return gRep.getVertices();
     }
     
+    public int getVerticeCount() {
+	return gRep.getVerticeCount();
+    }
+    
     public Iterable<Integer> getEdges(int node) {
 	return gRep.getEdges(node);
     }

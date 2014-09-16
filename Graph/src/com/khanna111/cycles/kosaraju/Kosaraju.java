@@ -46,7 +46,8 @@ public class Kosaraju {
      * Step 2 from description above
      */
     public void gatherFinishingTime() {
-	for (int i : g.getVertices()) {
+	for (int i = g.getVerticeCount() -1; i >=0; i--){
+//	for (int i : g.getVertices()) {
 	    if (!discoveredNodes.contains(i)) {
 		DFSLoop1(g, i);
 	    }
