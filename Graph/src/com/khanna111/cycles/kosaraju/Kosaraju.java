@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-import com.khanna111.graph.Graph;
+import com.khanna111.graph.directed.Graph;
 import com.khanna111.util.PrintUtil;
 
 /**

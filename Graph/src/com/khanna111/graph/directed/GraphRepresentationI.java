@@ -1,4 +1,4 @@
-package com.khanna111.graph;
+package com.khanna111.graph.directed;
 
 import java.io.PrintStream;
 

@@ -1,4 +1,4 @@
-package com.khanna111.graph.weights;
+package com.khanna111.graph.directed.weights;
 
 import java.io.PrintStream;
 
