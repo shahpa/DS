@@ -44,8 +44,9 @@ public class PrintUtil {
      */
     public static void printIntArray(int[] array) {
 	System.out.println("Printing Array");
+	int index = 0;
 	for (int o : array) {
-	    System.out.println("    " + o);
+	    System.out.println(String.format("    [%d]:    %d", index++, o));
 	}
     }
 }
