@@ -11,7 +11,12 @@ import com.khanna111.graph.directed.weights.Vertex;
 import com.khanna111.util.PrintUtil;
 
 /**
- * We will take both directed and undirected graphs as examples.
+ * Although Dijkstra's can operate on directed as well 
+ * as undirected graphs, we would in this example operate
+ * on a directed graph.
+ * 
+ * This is the naive implementation and runs in 
+ * {@code O (E + V^2) }.
  * 
  * 
  * @author khanna
@@ -31,9 +36,11 @@ public class NaiveDijkstras {
 	prepareGraph(s, g, dist, set);
 	
 	Vertex v;
+	/* This is invoked "v" times.*/
 	while ((v = findMin(set, dist)) != null) {
 	    // Mark this vertex as settled 
 	    set.remove(v);
+	    /* This is invoked for each outgoing edge adjacent to this vertex */
 	    for (Edge e : g.getEdges(v)) {
 		// if this edge's end vertex has a lesser combined 
 		// weight than the previous distance then we have a 
