@@ -3,6 +3,7 @@ package com.khanna111.graph.directed.weights;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -28,16 +29,16 @@ public class Graph {
     GraphRepresentationI gRep;
     
     
-    static class AdjacencyList implements GraphRepresentationI, Cloneable {
+    static class AdjacencyList implements GraphRepresentationI {
 	List<Set<Edge>> list;
-	int[] vertices;
+	Vertex[] vertices;
 
 	AdjacencyList(int m) {
 	    list = new ArrayList<Set<Edge>>(m);
-	    vertices = new int[m];
+	    vertices = new Vertex[m];
 	    for (int i = 0; i < m; i++) {
 		list.add(i, new HashSet<Edge>());
-		vertices[i] = i;
+		vertices[i] = new Vertex(i);;
 	    }
 
 	}
@@ -50,10 +51,11 @@ public class Graph {
 	    return list.size();
 	}
 
-	public int[] getVertices() {
+	public Vertex[] getVertices() {
 	    return vertices;
 	}
 
+	@Override
 	public AdjacencyList clone() throws CloneNotSupportedException {
 	    AdjacencyList clone = (AdjacencyList) super.clone();
 	    clone.list = new ArrayList<Set<Edge>>(getVerticeCount());
@@ -80,8 +82,8 @@ public class Graph {
 	    return revAdjList;
 	}
 
-	public Iterable<Edge> getEdges(int node) {
-	    return list.get(node);
+	public Iterable<Edge> getEdges(Vertex node) {
+	    return list.get(node.getId());
 	}
 
 	public void print(PrintStream out) {
@@ -97,6 +99,8 @@ public class Graph {
 	    }
 	    out.println(strB.toString());
 	}
+
+	
     } // end AdjacencyList
 
     /**
@@ -129,7 +133,7 @@ public class Graph {
 	// return reverse;
     }
 
-    public int[] getVertices() {
+    public Vertex[] getVertices() {
 	return gRep.getVertices();
     }
 
@@ -137,7 +141,7 @@ public class Graph {
 	return gRep.getVerticeCount();
     }
 
-    public Iterable<Edge> getEdges(int node) {
+    public Iterable<Edge> getEdges(Vertex node) {
 	return gRep.getEdges(node);
     }
 

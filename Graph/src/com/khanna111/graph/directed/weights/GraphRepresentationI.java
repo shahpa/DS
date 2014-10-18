@@ -12,9 +12,9 @@ public interface GraphRepresentationI extends Cloneable {
 
     public int getVerticeCount();
     
-    public int[] getVertices();
+    public Vertex[] getVertices();
     
-    public Iterable<Edge> getEdges(int node);
+    public Iterable<Edge> getEdges(Vertex node);
 
     public void print(PrintStream out);
 
@@ -25,4 +25,6 @@ public interface GraphRepresentationI extends Cloneable {
     public Object clone() throws CloneNotSupportedException;
     
     public GraphRepresentationI transpose();
+    
+    
 }
