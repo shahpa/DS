@@ -1,5 +1,10 @@
 package com.khanna111.util;
 
+/**
+ * 
+ * @author khanna
+ *
+ */
 public class PrintHeapUtil {
 
     private static int getLeftChildIndex(int parentIndex) {

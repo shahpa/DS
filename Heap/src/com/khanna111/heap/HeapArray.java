@@ -1,7 +1,6 @@
 package com.khanna111.heap;
 
 import com.khanna111.util.PrintHeapUtil;
-import com.khanna111.util.PrintUtil;
 
 /**
  * 
