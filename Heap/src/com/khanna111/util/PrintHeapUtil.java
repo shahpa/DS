@@ -23,30 +23,39 @@ public class PrintHeapUtil {
 	assert heapArray.length > 0;
 	int rootIndex = 0;
 	// System.out.println(rootIndex);
-	String prefix = "|__";
+	String prefix = "";
 	printHeapAsAnArray(heapArray, rootIndex, prefix, false);
 	// while ()
 
     }
 
-    private static void printHeapAsAnArray(int[] heapArray, int rootIndex, String prefix, boolean isLeft) {
+    private static void printHeapAsAnArray(int[] heapArray, int rootIndex, String prefix, boolean isRight) {
 
-	System.out.println(prefix + heapArray[rootIndex]);
-
-	if (getLeftChildIndex(rootIndex) >= heapArray.length - 1) {
+	if (rootIndex > heapArray.length -1){
 	    return;
 	}
-
-	prefix = "|  " + prefix;
-
-	printHeapAsAnArray(heapArray, getLeftChildIndex(rootIndex), prefix, true);
-	printHeapAsAnArray(heapArray, getRightChildIndex(rootIndex), prefix, false);
+	
+	System.out.println(prefix + "__"  + heapArray[rootIndex]);
+	
+	String prefix1 = null;
+	
+	if (isRight) {
+	    // if the parent was the right node then we need to remove the last "|" since 
+	    // there are no more children to the parent.
+	    prefix = prefix.substring(0, prefix.length() -1) + " "; 
+	}
+	
+	prefix1 = prefix + "  |" ;
+	    
+	
+	printHeapAsAnArray(heapArray, getLeftChildIndex(rootIndex), prefix1, false);
+	printHeapAsAnArray(heapArray, getRightChildIndex(rootIndex), prefix1, true);
 
     }
 
     public static void main(String[] args) {
 
-	int[] array = { 4, 5, 6, 1, 3, 7, 9, 2, 8 };
+	int[] array = { 4, 5, 6, 1, 3, 7, 9, 2, 8, 12, 13, 14, 15, 17, 20, 23 };
 	printHeapAsAnArray(array);
     }
 
