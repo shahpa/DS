@@ -3,55 +3,16 @@ package com.khanna111.heap;
 import com.khanna111.util.PrintHeapUtil;
 
 /**
+ * Implementation of a MinHeap.
  * 
  * @author khanna
  *
  */
-public class HeapArray implements HeapI {
+public class MinHeapArray extends AbstractHeapArray {
 
-    /* We have a max of 64 elements or max height of 6 */
-    private int[] heapAsAnArray; // = new int[64];
-
-    private int getLeftChildIndex(int parentIndex) {
-	/* 2*parentIndex + 1; */
-	return 2 * parentIndex + 1;
-
-    }
-
-    private int getRightChildIndex(int parentIndex) {
-	/* 2*parentIndex + 2 */
-	return 2 * parentIndex + 2;
-
-    }
-
-    private int getParentIndex(int childIndex) {
-	/* floor ((childIndex - 1 ) /2 ) */
-	return (childIndex - 1) / 2;
-    }
-
-    /**
-     * Using Floyd's algorithm
-     * 
-     * @param array
-     *            - broken heap represented as an array
-     */
+  
     @Override
-    public void createHeap(int[] array) {
-	heapAsAnArray = array;
-	int count = heapAsAnArray.length;
-
-	// get the last non-leaf element
-	int lastNonLeafIndex = (count / 2) - 1;
-
-	// index of the first child of root
-	while (lastNonLeafIndex >= 0) {
-	    siftDown(heapAsAnArray, lastNonLeafIndex, count - 1);
-	    lastNonLeafIndex--;
-	}
-
-    }
-
-    private void siftDown(int[] heapArray, int nonLeafIndex, int lastLeafIndex) {
+    protected final void siftDown(int[] heapArray, int nonLeafIndex, int lastLeafIndex) {
 	int rootIndex = nonLeafIndex;
 	// intially there is no need to swap till we check the children for a
 	// lower value
@@ -90,36 +51,41 @@ public class HeapArray implements HeapI {
 	}
     }
 
+    /**
+     * Returns the min.
+     * 
+     */
     @Override
-    public void heapify() {
-	// TODO Auto-generated method stub
-
+    public int findTop() {
+	return heapAsAnArray[0];
     }
 
+    
     @Override
-    public int findMin() {
-	// TODO Auto-generated method stub
-	return 0;
+    public int delTop() {
+	int min = heapAsAnArray[0];
+	int last = heapAsAnArray[size() -1];
+	heapAsAnArray[0] = last;
+	heapAsAnArray[size() -1] = Integer.MAX_VALUE;
+	siftDown(heapAsAnArray, 0, size() -1);
+	return min;
+	
     }
 
-    @Override
-    public void insert(int i) {
-	// TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public int size() {
-	// TODO Auto-generated method stub
-	return 0;
-    }
-
+    
+    
     public static void main(String[] args) {
 
-	int[] array = { 4, 5, 6, 1, 3, 7, 9, 2, 8 };
-	HeapArray hArr = new HeapArray();
-	hArr.createHeap(array);
-	PrintHeapUtil.printHeapAsAnArray(hArr.heapAsAnArray);
+ 	int[] array = { 4, 5, 6, 1, 3, 7, 9, 2, 8 };
+ 	MinHeapArray hArr = new MinHeapArray();
+ 	hArr.createHeap(array);
+ 	PrintHeapUtil.printHeapAsAnArray(hArr.heapAsAnArray);
+ 	
+ 	int min = hArr.delTop();
+ 	System.out.println("Min:" + min + "\t: The heapArray is: " );
+ 	PrintHeapUtil.printHeapAsAnArray(hArr.heapAsAnArray);
+ 	
 
-    }
+     }
+
 }
