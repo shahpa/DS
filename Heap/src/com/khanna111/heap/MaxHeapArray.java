@@ -2,6 +2,12 @@ package com.khanna111.heap;
 
 import com.khanna111.util.PrintHeapUtil;
 
+/**
+ * Implementation of a max heap.
+ * 
+ * @author khanna
+ *
+ */
 public class MaxHeapArray extends AbstractHeapArray{
 
 

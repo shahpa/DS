@@ -52,6 +52,24 @@ public class PrintHeapUtil {
 	printHeapAsAnArray(heapArray, getRightChildIndex(rootIndex), prefix1, true);
 
     }
+    
+    /**
+     * Prints an primitive <code>int</code> array.
+     * 
+     * Note that this cannot be made generic since 
+     * it would be erased into Object and that primitive <code>ints'</code>
+     * do not extend Object. For instance if we invoke {@link Object#toString()}
+     * on a primitive <code>int</code>: this cannot be allowed to happen.
+     * 
+     * @param array
+     */
+    public static void printIntArray(int[] array) {
+	System.out.println("Printing Array");
+	int index = 0;
+	for (int o : array) {
+	    System.out.println(String.format("    [%d]:    %d", index++, o));
+	}
+    }
 
     public static void main(String[] args) {
 
