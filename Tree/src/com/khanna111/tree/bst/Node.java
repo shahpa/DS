@@ -1,30 +1,38 @@
 package com.khanna111.tree.bst;
 
-public class Node<T extends Comparable<T>> {
+public class Node<Key extends Comparable<Key>, Value> {
 
-    private T data;
-    private Node<T> left, right;
+    private Key key;
+    private Value value;
+    private Node<Key, Value> left, right;
     
     
     
-    public Node(T data, Node<T> left, Node<T> right) {
+    public Node(Key key, Value value, Node<Key, Value> left, Node<Key, Value> right) {
 	super();
-	this.data = data;
+	this.key = key;
+	this.value = value;
 	this.left = left;
 	this.right = right;
     }
     
-    public T getData() {
-        return data;
+    public Key getKey() {
+        return key;
     }
-    public Node<T> getLeft() {
+    
+    public Value getValue() {
+	return value;
+    }
+    
+    public void setValue(Value value) {
+	this.value = value;
+    }
+    
+    public Node<Key, Value> getLeft() {
         return left;
     }
-    public Node<T> getRight() {
+    public Node<Key, Value> getRight() {
         return right;
     }
-    
-       
-    
     
 }

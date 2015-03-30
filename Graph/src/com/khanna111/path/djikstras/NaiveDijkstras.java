@@ -1,8 +1,6 @@
 package com.khanna111.path.djikstras;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.khanna111.graph.directed.weights.Edge;
@@ -26,7 +24,7 @@ public class NaiveDijkstras {
 
     int[] findShortestPath(Vertex s, Graph g) {
 	
-	List<Vertex> shortestPaths = new ArrayList<Vertex>();
+//	List<Vertex> shortestPaths = new ArrayList<Vertex>();
 	// The distance from the source to a vertex.
 	// Each index specifies the id of the Vertex
 	int[] dist = new int[g.getVerticeCount()];
