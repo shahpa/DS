@@ -34,19 +34,28 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
     private Node<Key, Value> put(Node<Key, Value> node, Key key, Value value) {
 
+	if (node == null) {
+	    // reached the end or empty
+	    return new Node<>(key, value, null, null);
+	}
+	
 	int c = key.compareTo(node.getKey());
 	if (c < 0) {
-	    node = node.getLeft();
+	    // go left and specify or re-specify the left tree
+	    node.setLeft( put(node.getLeft(), key, value) );
+	    
 	}
 	else if (c > 0) {
-	    node = node.getRight();
+	    node.setRight( put(node.getRight(), key, value) );
 	}
 	else {
 	    node.setValue(value);
 	}
-	return null;
+	return node;
+	
     }
-
+    
+    
     /******************************
      * Delete
      ******************************/

@@ -34,5 +34,13 @@ public class Node<Key extends Comparable<Key>, Value> {
     public Node<Key, Value> getRight() {
         return right;
     }
+
+    public void setLeft(Node<Key, Value> left) {
+        this.left = left;
+    }
+
+    public void setRight(Node<Key, Value> right) {
+        this.right = right;
+    }
     
 }
