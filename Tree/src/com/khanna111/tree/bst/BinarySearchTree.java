@@ -14,11 +14,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     private Node<Key, Value> root;
     
     public boolean contains(Key key) {
-	return false;
+	return get(key) == null? false : true;
     }
 
     public Value get(Key key) {
-	return null;
+	return get(root, key) == null ? null : get(root, key).getValue();
     }
 
     public void put(Key key, Value value) {
@@ -55,6 +55,27 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	
     }
     
+    private Node<Key, Value> get(Node<Key, Value> node, Key key) {
+
+	if (node == null) {
+	    // reached the end or empty
+	    return null;
+	}
+	
+	int c = key.compareTo(node.getKey());
+	if (c < 0) {
+	    // go left
+	    return get(node.getLeft(), key);
+	    
+	}
+	else if (c > 0) {
+	    return get(node.getRight(), key);
+	}
+	else {
+	    return node;
+	}
+	
+    }
     
     /******************************
      * Delete
