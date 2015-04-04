@@ -139,4 +139,8 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
      /***********************************
       *  inorder.
       ************************************/
+     
+     public void print() {
+	 PrintBSTUtil.printAll(root, "");
+     }
 }
