@@ -16,9 +16,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     public boolean contains(Key key) {
 	return get(key) == null ? false : true;
     }
-    
+
     public boolean isEmpty() {
-	return root == null ? true : false; 
+	return root == null ? true : false;
     }
 
     /******************************
@@ -101,9 +101,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     public Key getMin() {
 	if (isEmpty()) {
 	    return null;
-	}
-	else return min(root).getKey();
-	    
+	} else
+	    return min(root).getKey();
+
     }
 
     private Node<Key, Value> min(Node<Key, Value> node) {
@@ -111,39 +111,53 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	Node<Key, Value> left = node.getLeft();
 	if (left != null) {
 	    return min(left);
-	}
-	else{
+	} else {
 	    return node;
 	}
     }
-    
+
     public Key getMax() {
 	if (isEmpty()) {
 	    return null;
-	}
-	else return max(root).getKey();
+	} else
+	    return max(root).getKey();
     }
-    
+
     private Node<Key, Value> max(Node<Key, Value> node) {
 	assert node != null;
 	Node<Key, Value> right = node.getRight();
 	if (right != null) {
 	    return max(right);
-	}
-	else{
+	} else {
 	    return node;
 	}
     }
+
     /********************************
      * pred, succ
      ********************************/
 
     public Key getPred(Key key) {
-	return null;
+
+	Node<Key, Value> node = get(root, key);
+	if (node == null) {
+	    return null;
+	}
+
+	Node<Key, Value> left = node.getLeft();
+	return left != null ? max(left).getKey() : null;
+
     }
 
     public Key getSucc(Key key) {
-	return null;
+	
+	Node<Key, Value> node = get(root, key);
+	if (node == null) {
+	    return null;
+	}
+
+	Node<Key, Value> right = node.getRight();
+	return right != null ? min(right).getKey() : null;
     }
 
     /********************************

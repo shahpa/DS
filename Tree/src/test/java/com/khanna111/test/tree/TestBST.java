@@ -21,7 +21,7 @@ public class TestBST {
 	assertEquals(bst.isEmpty(), false);
 	assertEquals(bst.get(50), "fifty");
     }
-    
+
     @Test(groups = { "tree" })
     public void get1() {
 	BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
@@ -30,9 +30,39 @@ public class TestBST {
 	assertEquals(bst.get(50), "fifty");
 
     }
-    
+
     @Test(groups = { "tree" })
     public void minAndMax() {
+	BinarySearchTree<Integer, String> tree = getHugeBST();
+
+	assertEquals((int) tree.getMin(), 3);
+	assertEquals((int) tree.getMax(), 85);
+
+    }
+
+    @Test(groups = { "tree" })
+    public void predAndSucc() {
+	BinarySearchTree<Integer, String> tree = getHugeBST();
+
+	assertEquals((int) tree.getPred(50), 36);
+	assertEquals((int) tree.getSucc(50), 55);
+	
+	assertEquals((int) tree.getPred(20), 11);
+	assertEquals((int) tree.getSucc(20), 21);
+	
+	assertEquals((Integer) tree.getPred(3), null);
+	assertEquals((int) tree.getSucc(3), 4);
+
+	assertEquals((int) tree.getPred(30), 25);
+	assertEquals((int) tree.getSucc(30), 33);
+
+	
+	assertEquals((int) tree.getPred(70), 65);
+	assertEquals((int) tree.getSucc(70), 79);
+    }
+
+    
+    private BinarySearchTree<Integer, String> getHugeBST() {
 	BinarySearchTree<Integer, String> tree = new BinarySearchTree<>();
 	tree.put(50, "");
 	tree.put(20, "");
@@ -58,10 +88,7 @@ public class TestBST {
 	tree.put(24, "");
 	tree.put(85, "");
 	tree.put(79, "");
-	
-	assertEquals((int)tree.getMin(), 3);
-	assertEquals((int)tree.getMax(), 85);
 
+	return tree;
     }
-    
 }
