@@ -103,6 +103,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	    return null;
 	}
 	else return min(root).getKey();
+	    
     }
 
     private Node<Key, Value> min(Node<Key, Value> node) {
@@ -112,7 +113,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	    return min(left);
 	}
 	else{
-	    return left;
+	    return node;
 	}
     }
     
@@ -127,10 +128,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	assert node != null;
 	Node<Key, Value> right = node.getRight();
 	if (right != null) {
-	    return min(right);
+	    return max(right);
 	}
 	else{
-	    return right;
+	    return node;
 	}
     }
     /********************************
