@@ -59,6 +59,9 @@ public class PrintBSTUtil {
 	tree.put(21, "");
 	tree.put(23, "");
 	tree.put(4, "");
+	tree.put(24, "");
+	tree.put(85, "");
+	tree.put(79, "");
 
 	tree.print();
 
