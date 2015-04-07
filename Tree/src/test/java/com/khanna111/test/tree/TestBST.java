@@ -69,6 +69,27 @@ public class TestBST {
 	tree.delete(50);
 	assertEquals(tree.get(50), null);
 	tree.print();
+
+	tree = new BinarySearchTree<>();
+	tree.put(50, "");
+	tree.put(20, "");
+	tree.put(70, "");
+	tree.put(10, "");
+	tree.put(60, "");
+	tree.put(80, "");
+	tree.put(6, "");
+	tree.put(55, "");
+	tree.put(65, "");
+	tree.put(3, "");
+	tree.put(5, "");
+	tree.put(4, "");
+	tree.put(85, "");
+	tree.put(79, "");
+	tree.print();
+	tree.delete(20);
+	assertEquals(tree.get(20), null);
+	tree.print();
+	
     }
 
     private BinarySearchTree<Integer, String> getHugeBST() {

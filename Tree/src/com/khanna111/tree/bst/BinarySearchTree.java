@@ -99,10 +99,16 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	if (isEmpty()) {
 	    return;
 	}
-	root = deleteNode(key);
+	root = deleteNodeIter(key);
     }
 
-    private Node<Key, Value> deleteNode(Key key) {
+    /**
+     * This is a delete using iteration.
+     * 
+     * @param key
+     * @return the root node.
+     */
+    private Node<Key, Value> deleteNodeIter(Key key) {
 
 	// will use iteration instead of recursion.
 	Node<Key, Value> playNode = root;
@@ -115,7 +121,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 		// the key does not exist
 		return root;
 	    }
-	    
+
 	    int c = key.compareTo(playNode.getKey());
 	    if (c < 0) {
 		// go left
@@ -158,13 +164,20 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
 	    } else {
 		parent.setRight(pred);
-	    }	    
+	    }
 	} else {
 	    root = pred;
 	}
-	predParent.setRight(pred.getLeft());
-	pred.setLeft(playNode.getLeft());
-	pred.setRight(playNode.getRight());
+	// the parent of the pred would have to set the right child since the
+	// pred would always be the right child (or the root. The left child of
+	// the pred is
+	// the value to set as the right child of the parent since the pred - if
+	// it has a child - would only have the left one.
+	if (predParent != null) {
+	    predParent.setRight(pred.getLeft());
+	    pred.setLeft(playNode.getLeft());
+	    pred.setRight(playNode.getRight());
+	}
 
 	return root;
     }
