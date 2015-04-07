@@ -28,6 +28,7 @@ public class TestBST {
 	bst.put(50, "fifty");
 	assertEquals(bst.isEmpty(), false);
 	assertEquals(bst.get(50), "fifty");
+	assertEquals(bst.get(55), null);
 
     }
 
@@ -46,22 +47,30 @@ public class TestBST {
 
 	assertEquals((int) tree.getPred(50), 36);
 	assertEquals((int) tree.getSucc(50), 55);
-	
+
 	assertEquals((int) tree.getPred(20), 11);
 	assertEquals((int) tree.getSucc(20), 21);
-	
+
 	assertEquals((Integer) tree.getPred(3), null);
 	assertEquals((int) tree.getSucc(3), 4);
 
 	assertEquals((int) tree.getPred(30), 25);
 	assertEquals((int) tree.getSucc(30), 33);
 
-	
 	assertEquals((int) tree.getPred(70), 65);
 	assertEquals((int) tree.getSucc(70), 79);
     }
 
-    
+    @Test(groups = { "tree" })
+    public void delete1() {
+	BinarySearchTree<Integer, String> tree = getHugeBST();
+
+	tree.print();
+	tree.delete(50);
+	assertEquals(tree.get(50), null);
+	tree.print();
+    }
+
     private BinarySearchTree<Integer, String> getHugeBST() {
 	BinarySearchTree<Integer, String> tree = new BinarySearchTree<>();
 	tree.put(50, "");

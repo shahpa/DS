@@ -7,7 +7,7 @@ package com.khanna111.tree.bst;
  * @param <Key>
  *            Generic Parameter
  * @param <Value>
- *            Genric Parameter
+ *            Generic Parameter
  */
 public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
@@ -26,11 +26,15 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
      ******************************/
 
     public Value get(Key key) {
-	return get(root, key) == null ? null : get(root, key).getValue();
+	Node<Key, Value> node = get(root, key);
+	return node == null ? null : node.getValue();
     }
 
     public void put(Key key, Value value) {
 	if (key == null) {
+	    throw new IllegalArgumentException("Null keys are not supported");
+	}
+	if (value == null) {
 	    delete(key);
 	} else {
 	    root = put(root, key, value);
@@ -91,7 +95,82 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     }
 
     public void delete(Key key) {
+	assert key != null;
+	if (isEmpty()) {
+	    return;
+	}
+	root = deleteNode(key);
+    }
 
+    private Node<Key, Value> deleteNode(Key key) {
+
+	// will use iteration instead of recursion.
+	Node<Key, Value> playNode = root;
+	Node<Key, Value> parent = root;
+	boolean isLeft = false;
+
+	while (true) {
+	    if (playNode == null) {
+		// reached the end or empty
+		// the key does not exist
+		return root;
+	    }
+	    
+	    int c = key.compareTo(playNode.getKey());
+	    if (c < 0) {
+		// go left
+		parent = playNode;
+		playNode = playNode.getLeft();
+		isLeft = true;
+
+	    } else if (c > 0) {
+		parent = playNode;
+		playNode = playNode.getRight();
+		isLeft = false;
+	    } else {
+		// we have the node and the parent from the the last iteration
+		// of this loop
+		// Now break out of it.
+		break;
+
+	    }
+	}
+
+	Node<Key, Value> predParent = null;
+
+	Node<Key, Value> pred = playNode.getLeft();
+	// now get pred and its parent
+	while (true) {
+	    if (pred.getRight() != null) {
+		predParent = pred;
+		pred = pred.getRight();
+
+	    } else {
+		break;
+	    }
+	}
+
+	if (playNode != parent) {
+	    // we are not deleting the root
+	    // swap first
+	    if (isLeft) {
+		parent.setLeft(pred);
+
+	    } else {
+		parent.setRight(pred);
+	    }	    
+	} else {
+	    root = pred;
+	}
+	predParent.setRight(pred.getLeft());
+	pred.setLeft(playNode.getLeft());
+	pred.setRight(playNode.getRight());
+
+	return root;
+    }
+
+    private Node<Key, Value> deleteNodeWithOneOrLessChild() {
+	return null;
     }
 
     /********************************
@@ -140,24 +219,35 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     public Key getPred(Key key) {
 
 	Node<Key, Value> node = get(root, key);
+	Node<Key, Value> pred = getPred(node);
+	return pred != null ? pred.getKey() : null;
+
+    }
+
+    private Node<Key, Value> getPred(Node<Key, Value> node) {
 	if (node == null) {
 	    return null;
 	}
-
 	Node<Key, Value> left = node.getLeft();
-	return left != null ? max(left).getKey() : null;
+	return left != null ? max(left) : null;
 
     }
 
     public Key getSucc(Key key) {
-	
+
 	Node<Key, Value> node = get(root, key);
+	Node<Key, Value> succ = getSucc(node);
+	return succ != null ? succ.getKey() : null;
+    }
+
+    public Node<Key, Value> getSucc(Node<Key, Value> node) {
+
 	if (node == null) {
 	    return null;
 	}
 
 	Node<Key, Value> right = node.getRight();
-	return right != null ? min(right).getKey() : null;
+	return right != null ? min(right) : null;
     }
 
     /********************************
