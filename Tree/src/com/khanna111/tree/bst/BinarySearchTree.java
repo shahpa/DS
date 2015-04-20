@@ -182,9 +182,6 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 	return root;
     }
 
-    private Node<Key, Value> deleteNodeWithOneOrLessChild() {
-	return null;
-    }
 
     /********************************
      * min, max

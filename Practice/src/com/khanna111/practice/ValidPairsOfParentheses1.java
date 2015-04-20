@@ -10,11 +10,11 @@ package com.khanna111.practice;
  * @author khanna
  *
  */
-public class ValidPairsOfParentheses {
+public class ValidPairsOfParentheses1 {
 
     public static void main(String[] args) {
 
-	new ValidPairsOfParentheses().print(4, 0, "");
+	new ValidPairsOfParentheses1().print(4, 0, "");
     }
 
     /**
