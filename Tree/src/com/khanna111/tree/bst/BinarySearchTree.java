@@ -12,6 +12,10 @@ package com.khanna111.tree.bst;
 public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
     private Node<Key, Value> root;
+    
+    public Node<Key, Value> getRoot() {
+	return root;
+    }
 
     public boolean contains(Key key) {
 	return get(key) == null ? false : true;
