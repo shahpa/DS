@@ -2,7 +2,6 @@ package com.khanna111.practice.tree.bt;
 
 import com.khanna111.tree.bst.BinarySearchTree;
 import com.khanna111.tree.bst.Node;
-import com.khanna111.tree.bst.PrintBSTUtil;
 
 /**
  * A balanced binary tree is a binary tree where:
