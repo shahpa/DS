@@ -6,8 +6,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="Practice/src/test/java"/>
 	<classpathentry kind="src" path="Tree/src/test/java"/>
-	<classpathentry kind="src" path="Practice/src"/>
+	<classpathentry excluding="test/java|test/java/" kind="src" path="Practice/src"/>
 	<classpathentry kind="src" path="Heap/src"/>
 	<classpathentry excluding="test/java/" kind="src" path="Tree/src"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
