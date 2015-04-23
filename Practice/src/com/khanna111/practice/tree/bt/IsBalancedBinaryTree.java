@@ -26,7 +26,7 @@ public class IsBalancedBinaryTree {
      * @param node
      * @return
      */
-    private int isBalanced(Node<Integer, String> node) {
+    public int isBalanced(Node<Integer, String> node) {
 
 	if (node == null) {
 	    // we traverse to the end and count up.
