@@ -15,7 +15,7 @@ public class PlainLevenshtein {
 	}
 
 	// my code 1
-	public int cost(int i, int j) {
+	public int cost1(int i, int j) {
 
 		if (i == 0) {
 			return j;
@@ -30,9 +30,9 @@ public class PlainLevenshtein {
 		if (str1[i - 1] == str2[j - 1]) {
 			c = 0;
 		}
-		int ins = cost(i, j - 1) + 1;
-		int del = cost(i - 1, j) + 1;
-		int sub = cost(i - 1, j - 1) + c;
+		int ins = cost1(i, j - 1) + 1;
+		int del = cost1(i - 1, j) + 1;
+		int sub = cost1(i - 1, j - 1) + c;
 		return Math.min(ins, Math.min(del, sub));
 
 	}
