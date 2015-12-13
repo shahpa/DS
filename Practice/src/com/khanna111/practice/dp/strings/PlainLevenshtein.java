@@ -1,5 +1,4 @@
-package com.khanna111.practice.dp;
-
+package com.khanna111.practice.dp.strings;
 
 /**
  * 
@@ -7,19 +6,16 @@ package com.khanna111.practice.dp;
  *
  */
 public class PlainLevenshtein {
-	private static char[] str1 = "adcklllkl".toCharArray();
-	private static char[] str2 = "abcjfkerjfgggg".toCharArray();
+	private final char[] str1;
+	private final char[] str2;
 
-	// private static char[] str1 = "abb".toCharArray();
-	// private static char[] str2 = "abcd".toCharArray();
-
-	public static void main(String[] args) {
-		System.out.println(new PlainLevenshtein().cost(str1.length, str2.length));
-		System.out.println(new PlainLevenshtein().LevenshteinDistance(str1.length, str2.length));
+	public PlainLevenshtein(String s1, String s2) {
+		str1 = s1.toCharArray();
+		str2 = s2.toCharArray();
 	}
 
-	// my code
-	private int cost(int i, int j) {
+	// my code 1
+	public int cost(int i, int j) {
 
 		if (i == 0) {
 			return j;
@@ -41,8 +37,31 @@ public class PlainLevenshtein {
 
 	}
 
+	// my code 2
+	public int cost2(int i, int j) {
+
+		if (i == str1.length) {
+			return str2.length -j;
+		}
+		if (j == str2.length) {
+			return str1.length - i;
+		}
+		assert i >= 0;
+		assert j >= 0;
+
+		int c = 1;
+		if (str1[i] == str2[j]) {
+			c = 0;
+		}
+		int ins = cost2(i, j + 1) + 1;
+		int del = cost2(i + 1, j) + 1;
+		int sub = cost2(i + 1, j + 1) + c;
+		return Math.min(ins, Math.min(del, sub));
+
+	}
+
 	// wikipedia code to confirm results
-	int LevenshteinDistance(int len_s, int len_t) {
+	public int LevenshteinDistance(int len_s, int len_t) {
 		int cost;
 
 		/* base case: empty strings */
