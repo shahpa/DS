@@ -1,6 +1,11 @@
 package com.khanna111.practice.dp;
 
 
+/**
+ * 
+ * @author gkhanna
+ *
+ */
 public class PlainLevenshtein {
 	private static char[] str1 = "adcklllkl".toCharArray();
 	private static char[] str2 = "abcjfkerjfgggg".toCharArray();
