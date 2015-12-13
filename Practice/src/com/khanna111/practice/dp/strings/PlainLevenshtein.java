@@ -14,7 +14,21 @@ public class PlainLevenshtein {
 		str2 = s2.toCharArray();
 	}
 
-	// my code 1
+	/**
+	 * my code 1: A top-down approach that can benefit from memoization. It
+	 * recurses and creates a matrix where the answer lies at [m][n]
+	 * <p>
+	 * The goal is to transmute "str1" into "str2".
+	 * <p>
+	 * The initial call is {@code cost1(m, n)} where m = size of "str1" <br>
+	 * and n = size of "str2".
+	 *
+	 * @param i
+	 *            the index (the 0th based index from 0 to m - 1)
+	 * @param j
+	 *            the index (the 0th based index from 0 n - 1)
+	 * @return: the final cost
+	 */
 	public int cost1(int i, int j) {
 
 		if (i == 0) {
@@ -37,11 +51,29 @@ public class PlainLevenshtein {
 
 	}
 
-	// my code 2
+	/**
+	 * my code 2: The difference is that this recurses and builds a matrix and
+	 * the answer lies at [0][0]. This could also benefit from memoization as
+	 * well.
+	 * 
+	 * <p>
+	 * However in order for it to qualify as DP, they key is to solve the
+	 * smaller sub-problems first and then move on to solver bigger sub-problems
+	 * with the results of the smaller sub-problems that are already computed
+	 * and available at that point. Therefore this is not DP either.
+	 * <p>
+	 * The initial call is cost2(0,0)
+	 * 
+	 * @param i
+	 *            the index (the 0th based index from 0 to m - 1)
+	 * @param j
+	 *            the index (the 0th based index from 0 n - 1)
+	 * @return: the final cost
+	 */
 	public int cost2(int i, int j) {
 
 		if (i == str1.length) {
-			return str2.length -j;
+			return str2.length - j;
 		}
 		if (j == str2.length) {
 			return str1.length - i;
@@ -59,7 +91,8 @@ public class PlainLevenshtein {
 		return Math.min(ins, Math.min(del, sub));
 
 	}
-
+	
+	
 	// wikipedia code to confirm results
 	public int LevenshteinDistance(int len_s, int len_t) {
 		int cost;

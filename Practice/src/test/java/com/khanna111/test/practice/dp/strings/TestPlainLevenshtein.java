@@ -30,7 +30,19 @@ public class TestPlainLevenshtein {
 		assertEquals(cost1, costWiki);
 		assertEquals(cost1, 3);
 	}
-
+	
+	@Test
+	public void testCost1_C() {
+		String str1 = "abcjfkerjfgggg";
+		String str2 = "adcklllkl";
+		int cost1 = new PlainLevenshtein(str1, str2).cost1(str1.length(), str2.length());
+		int costWiki = new PlainLevenshtein(str1, str2).LevenshteinDistance(str1.length(), str2.length());
+		System.out.println("cost 1: " +cost1);
+		System.out.println("cost Wiki: " +costWiki);
+		assertEquals(cost1, 11);
+	}
+	
+	
 //	@Test
 //	public void testCost2_A() {
 //		String str1 = "adcklllkl";
